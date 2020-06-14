@@ -1,0 +1,30 @@
+server:
+  port: 9030
+  servlet:
+    context-path: /rental-api
+
+logging:
+  pattern:
+    console: "%-30(%d{HH:mm:ss.SSS} [%thread]) %-5level %logger{32} - %msg%n"
+  level:
+    org.apache.pdfbox: OFF
+
+spring:
+  datasource:
+    url: jdbc:h2:file:./shared/testdb
+    platform: h2
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
+    schema: classpath:db/scripts/schema.sql
+    data: classpath:db/test-data/*.sql
+  jpa:
+    hibernate:
+      ddl-auto: none
+    database-platform: org.hibernate.dialect.H2Dialect
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      settings:
+        web-allow-others: true
