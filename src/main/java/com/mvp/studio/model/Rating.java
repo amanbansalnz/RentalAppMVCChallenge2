@@ -50,4 +50,13 @@ public class Rating {
     public void setVideoRating(Long videoRating) {
         this.videoRating = videoRating;
     }
+
+    @Override
+    public String toString() {
+        return "Rating{" +
+                "id=" + id +
+                ", videoId=" + videoId +
+                ", videoRating=" + videoRating +
+                '}';
+    }
 }

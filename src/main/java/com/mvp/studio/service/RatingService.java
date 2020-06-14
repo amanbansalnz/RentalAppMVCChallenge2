@@ -26,10 +26,8 @@ public class RatingService {
         this.ratingRepository = ratingRepository;
     }
 
-//    private Map<Long, List<Integer>> ratings = new HashMap<>();
-
     /**
-     * Updates the rating for the given movieTitle and then update them into the DB.
+     * Updates the rating for the given movieTitle and then update video them into the DB.
      */
     public Video receiveRating(String movieTitle, int rating) {
 
@@ -38,24 +36,30 @@ public class RatingService {
 
         if (videos.containsKey(movieTitle)) {
             video = videos.get(movieTitle);
-
-            Rating ratingToSave = new Rating();
-            ratingToSave.setVideoRating(Long.valueOf(rating));
-            ratingToSave.setVideoId(video.getId());
-
-            ratingRepository.save(ratingToSave);
-
-//            List<Rating> ratings = ratingRepository.findAllByVideoId(video.getId());
-            List<Rating> ratings = new ArrayList<>();
-            double averageRating = calculateAverageRating(ratings);
-            video.setRating(averageRating);
+            saveRating(rating, video);
+            video.setRating(calculateAverageRating(video.getId()));
             videoService.updateVideo(video);
         }
         return video;
     }
 
-    private double calculateAverageRating(List<Rating> ratings) {
+    private void saveRating(int rating, Video video) {
+        Rating ratingToSave = new Rating();
+        ratingToSave.setVideoRating(Long.valueOf(rating));
+        ratingToSave.setVideoId(video.getId());
+        ratingRepository.save(ratingToSave);
+    }
+
+    /**
+     * This calculates the average rating. Fetches all the rating given to the video from the DB and returns the average rating.
+     * @param videoID
+     */
+    private double calculateAverageRating(Long videoID) {
+
+        List<Rating> ratings = ratingRepository.findAllByVideoId(videoID);
+
         int sum = 0;
+
         for(Rating ratingList : ratings){
             sum+=ratingList.getVideoRating();
 
@@ -63,34 +67,13 @@ public class RatingService {
         return ratings.size() > 0 ?  sum/ratings.size() : 0;
     }
 
+    public List<Rating> fetchAllRating() {
+        return ratingRepository.findAll();
+    }
+
 
     /**
-     * This calculates the average rating. The map is used to store the ratings in a list and the key being the video ID which is unique.
-     * If the rating map does not contain the rating it adds a new entry into the map, if it does contain it then it appends it to the existing list.
+     * As you can see by creating a Rating table and fetching ratings from the DB you have made
+     * the code much more simple to implement less code less maintenance and easier to read.
      */
-//    private double calculateAverageRating(Long movieId, int rating) {
-//
-//        double averageRating = rating;
-//
-//        if(ratings.containsKey(movieId)){
-//            List<Integer> ratingList = ratings.get(movieId);
-//            ratingList.add(rating);
-//
-//            int sum = 0;
-//            for(Integer integer : ratingList){
-//                sum+=integer;
-//            }
-//
-//            ratings.put(movieId, ratingList);
-//            averageRating = sum/ratingList.size();
-//
-//        }else{
-//            List<Integer> ratingList = new ArrayList<>();
-//            ratingList.add(rating);
-//            ratings.put(movieId, ratingList);
-//        }
-//
-//        return averageRating;
-//    }
-
 }

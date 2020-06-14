@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "3403ccd0-c2f3-49f5-b0eb-70ea3d7d2d98",
+		"name": "RentalVideo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:9030/rental-api/health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9030/rental-api/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9030",
+					"path": [
+						"rental-api",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9030/rental-api/v1/video",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9030/rental-api/v1/video",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9030",
+					"path": [
+						"rental-api",
+						"v1",
+						"video"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9030/rental-api/v1/video/rate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9030/rental-api/v1/video/rate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9030",
+					"path": [
+						"rental-api",
+						"v1",
+						"video",
+						"rate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9030/rental-api/v1/video",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"movieTitle\":\"Christopher Robin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9030/rental-api/v1/video/add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9030",
+					"path": [
+						"rental-api",
+						"v1",
+						"video",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9030/rental-api/v1/video/rent",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"movieTitle\":\"Christopher Robin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9030/rental-api/v1/video/rent",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9030",
+					"path": [
+						"rental-api",
+						"v1",
+						"video",
+						"rent"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9030/rental-api/v1/video/return",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"movieTitle\":\"Christopher Robin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9030/rental-api/v1/video/return",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9030",
+					"path": [
+						"rental-api",
+						"v1",
+						"video",
+						"return"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9030/rental-api/v1/video/rate",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"movieTitle\":\"Christopher Robin\",\n\t\"rating\" : 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9030/rental-api/v1/video/rate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9030",
+					"path": [
+						"rental-api",
+						"v1",
+						"video",
+						"rate"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

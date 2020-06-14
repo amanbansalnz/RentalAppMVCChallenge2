@@ -1,5 +1,6 @@
 package com.mvp.studio.controller;
 
+import com.mvp.studio.model.RatingResponse;
 import com.mvp.studio.model.RatingVideoRequest;
 import com.mvp.studio.model.RatingVideoResponse;
 import com.mvp.studio.model.RentVideoRequest;
@@ -7,6 +8,7 @@ import com.mvp.studio.model.RentVideoResponse;
 import com.mvp.studio.model.ReturnVideoRequest;
 import com.mvp.studio.model.ReturnVideoResponse;
 import com.mvp.studio.model.Video;
+import com.mvp.studio.model.VideoResponse;
 import com.mvp.studio.service.RatingService;
 import com.mvp.studio.service.RentalService;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +36,20 @@ public class RatingController {
     @Autowired
     private RatingService ratingService;
 
+
     /*
-     Implement the rate resource which takes a RatingVideoRequest that provides the movie title and a rating to rate and returns a
+       GET Mapping which returns all the ratings give for videos.
+    */
+    @GetMapping(value = "/rate", produces = MediaType.APPLICATION_JSON_VALUE)
+    public RatingResponse fetchAllRatings() {
+        RatingResponse ratingResponse = new RatingResponse();
+        ratingResponse.setRatings(ratingService.fetchAllRating());
+        return ratingResponse;
+    }
+
+
+    /*
+     Post Mapping which takes a RatingVideoRequest that provides the movie title and a rating to rate and returns a
      RatingVideoResponse which returns the video that was rated otherwise null if video does not exist.
      */
     @PostMapping(value = "/rate", produces = MediaType.APPLICATION_JSON_VALUE, consumes =  MediaType.APPLICATION_JSON_VALUE )
